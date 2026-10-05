@@ -1,5 +1,9 @@
 # RenderGate - Blender Render Preset Manager 🚀
 
+[![Download RenderGate](https://img.shields.io/badge/Download-RenderGate.zip-brightgreen?style=for-the-badge&logo=blender)](https://github.com/MauroTomaselli/RenderGate/raw/main/RenderGate.zip)
+
+> **📥 Download Rapido**: [Clicca qui per scaricare direttamente **RenderGate.zip**](https://github.com/MauroTomaselli/RenderGate/raw/main/RenderGate.zip) pronto da installare in Blender!
+
 **RenderGate** è un add-on per Blender scritto in Python progettato per esportare, importare e gestire l'intera configurazione di rendering di una scena Blender attraverso file di testo con estensione `.RGE`.
 
 ---
