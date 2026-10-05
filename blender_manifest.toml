@@ -1,0 +1,16 @@
+schema_version = "1.0.0"
+
+id = "rendergate"
+version = "1.0.0"
+name = "RenderGate"
+tagline = "Save and load render settings in human-readable .RGE files with cross-version compatibility"
+maintainer = "RenderGate Team"
+type = "add-on"
+
+license = [
+  "SPDX:GPL-2.0-or-later",
+]
+
+blender_version_min = "3.6.0"
+
+tags = ["Render"]

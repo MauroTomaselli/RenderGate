@@ -1,0 +1,1635 @@
+{
+  "_rendergate_meta": {
+    "addon": "RenderGate",
+    "addon_version": "1.0.0",
+    "format_version": "1.0",
+    "blender_version": [
+      5,
+      2,
+      2
+    ],
+    "blender_version_str": "5.2.2 LTS",
+    "created_at": "2026-10-05 21:59:58",
+    "preset_name": "Cycles_Production_4K_AgX",
+    "description": "High quality Cycles 4K preset with AgX color management."
+  },
+  "categories": {
+    "dimensions": {
+      "category_label": "Dimensions & Framing",
+      "category_id": "dimensions",
+      "properties": [
+        {
+          "field": "scene.render.resolution_x",
+          "label": "Resolution X",
+          "description": "Number of horizontal pixels in the rendered image",
+          "type": "INT",
+          "value": 3840
+        },
+        {
+          "field": "scene.render.resolution_y",
+          "label": "Resolution Y",
+          "description": "Number of vertical pixels in the rendered image",
+          "type": "INT",
+          "value": 2160
+        },
+        {
+          "field": "scene.render.resolution_percentage",
+          "label": "Resolution Scale",
+          "description": "Percentage scale for render resolution",
+          "type": "INT",
+          "value": 100
+        },
+        {
+          "field": "scene.render.pixel_aspect_x",
+          "label": "Pixel Aspect X",
+          "description": "Horizontal aspect ratio - for anamorphic or non-square pixel output",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.render.pixel_aspect_y",
+          "label": "Pixel Aspect Y",
+          "description": "Vertical aspect ratio - for anamorphic or non-square pixel output",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.render.fps",
+          "label": "FPS",
+          "description": "Framerate, expressed in frames per second",
+          "type": "INT",
+          "value": 24
+        },
+        {
+          "field": "scene.render.fps_base",
+          "label": "FPS Base",
+          "description": "Framerate base",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.render.use_border",
+          "label": "Render Region",
+          "description": "Render a user-defined render region, within the frame size",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.render.use_crop_to_border",
+          "label": "Crop to Render Region",
+          "description": "Crop the rendered frame to the defined render region size",
+          "type": "BOOLEAN",
+          "value": false
+        }
+      ]
+    },
+    "engine": {
+      "category_label": "Render Engine & General",
+      "category_id": "engine",
+      "properties": [
+        {
+          "field": "scene.render.engine",
+          "label": "Engine",
+          "description": "Engine to use for rendering",
+          "type": "ENUM",
+          "value": "CYCLES"
+        },
+        {
+          "field": "scene.render.film_transparent",
+          "label": "Transparent",
+          "description": "World background is transparent, for compositing the render over another background",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.render.dither_intensity",
+          "label": "Dither Intensity",
+          "description": "Amount of dithering noise added to the rendered image to break up banding",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.render.use_simplify",
+          "label": "Use Simplify",
+          "description": "Enable simplification of scene for quicker preview renders",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.render.simplify_subdivision",
+          "label": "Simplify Subdivision",
+          "description": "Global maximum subdivision level",
+          "type": "INT",
+          "value": 6
+        },
+        {
+          "field": "scene.render.simplify_child_particles",
+          "label": "Simplify Child Particles",
+          "description": "Global child particles percentage",
+          "type": "FLOAT",
+          "value": 1.0
+        }
+      ]
+    },
+    "color_management": {
+      "category_label": "Color Management",
+      "category_id": "color_management",
+      "properties": [
+        {
+          "field": "scene.view_settings.view_transform",
+          "label": "View",
+          "description": "View used when converting image to a display space",
+          "type": "ENUM",
+          "value": "AgX"
+        },
+        {
+          "field": "scene.view_settings.look",
+          "label": "Look",
+          "description": "Additional transform applied before view transform for artistic needs",
+          "type": "ENUM",
+          "value": "None"
+        },
+        {
+          "field": "scene.view_settings.exposure",
+          "label": "Exposure",
+          "description": "Exposure (stops) applied before display transform, multiplying by 2^exposure",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.view_settings.gamma",
+          "label": "Gamma",
+          "description": "Additional gamma encoding after display transform, for output with custom gamma",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.view_settings.use_curve_mapping",
+          "label": "Use Curves",
+          "description": "Use RGB curved for pre-display transformation",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.display_settings.display_device",
+          "label": "Display",
+          "description": "Display name. For viewing, this is the display device that will be emulated by limiting the gamut and HDR colors. For image and video output, this is the display space used for writing.",
+          "type": "ENUM",
+          "value": "sRGB"
+        }
+      ]
+    },
+    "cycles": {
+      "category_label": "Cycles Engine Settings",
+      "category_id": "cycles",
+      "properties": [
+        {
+          "field": "scene.cycles.device",
+          "label": "Device",
+          "description": "Device to use for rendering",
+          "type": "ENUM",
+          "value": "CPU"
+        },
+        {
+          "field": "scene.cycles.use_denoising",
+          "label": "Use Denoising",
+          "description": "Denoise the rendered image",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.denoiser",
+          "label": "Denoiser",
+          "description": "Denoise the image with the selected denoiser. For denoising the image after rendering",
+          "type": "ENUM",
+          "value": "OPENIMAGEDENOISE"
+        },
+        {
+          "field": "scene.cycles.denoising_prefilter",
+          "label": "Denoising Prefilter",
+          "description": "Prefilter noisy guiding (albedo and normal) passes to improve denoising quality when using OpenImageDenoise",
+          "type": "ENUM",
+          "value": "ACCURATE"
+        },
+        {
+          "field": "scene.cycles.denoising_quality",
+          "label": "Denoising Quality",
+          "description": "Overall denoising quality when using OpenImageDenoise",
+          "type": "ENUM",
+          "value": "HIGH"
+        },
+        {
+          "field": "scene.cycles.denoising_input_passes",
+          "label": "Denoising Input Passes",
+          "description": "Passes used by the denoiser to distinguish noise from shader and geometry detail",
+          "type": "ENUM",
+          "value": "RGB_ALBEDO_NORMAL"
+        },
+        {
+          "field": "scene.cycles.denoising_use_gpu",
+          "label": "Denoise on GPU",
+          "description": "Perform denoising on GPU devices configured in the system tab in the user preferences. This is significantly faster than on CPU, but requires additional GPU memory. When large scenes need more GPU memory, this option can be disabled",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.use_preview_denoising",
+          "label": "Use Viewport Denoising",
+          "description": "Denoise the image in the 3D viewport",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.preview_denoiser",
+          "label": "Viewport Denoiser",
+          "description": "Denoise the image after each preview update with the selected denoiser",
+          "type": "ENUM",
+          "value": "AUTO"
+        },
+        {
+          "field": "scene.cycles.preview_denoising_prefilter",
+          "label": "Viewport Denoising Prefilter",
+          "description": "Prefilter noisy guiding (albedo and normal) passes to improve denoising quality when using OpenImageDenoise",
+          "type": "ENUM",
+          "value": "FAST"
+        },
+        {
+          "field": "scene.cycles.preview_denoising_quality",
+          "label": "Viewport Denoising Quality",
+          "description": "Overall denoising quality when using OpenImageDenoise",
+          "type": "ENUM",
+          "value": "BALANCED"
+        },
+        {
+          "field": "scene.cycles.preview_denoising_input_passes",
+          "label": "Viewport Denoising Input Passes",
+          "description": "Passes used by the denoiser to distinguish noise from shader and geometry detail",
+          "type": "ENUM",
+          "value": "RGB_ALBEDO"
+        },
+        {
+          "field": "scene.cycles.preview_denoising_start_sample",
+          "label": "Start Denoising",
+          "description": "Sample to start denoising the preview at",
+          "type": "INT",
+          "value": 1
+        },
+        {
+          "field": "scene.cycles.preview_denoising_use_gpu",
+          "label": "Denoise Preview on GPU",
+          "description": "Perform denoising on GPU devices configured in the system tab in the user preferences. This is significantly faster than on CPU, but requires additional GPU memory. When large scenes need more GPU memory, this option can be disabled",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.samples",
+          "label": "Samples",
+          "description": "Number of samples to render for each pixel",
+          "type": "INT",
+          "value": 2048
+        },
+        {
+          "field": "scene.cycles.preview_samples",
+          "label": "Viewport Samples",
+          "description": "Number of samples to render in the viewport, unlimited if 0",
+          "type": "INT",
+          "value": 1024
+        },
+        {
+          "field": "scene.cycles.use_sample_subset",
+          "label": "Use Sample Subset",
+          "description": "Render a subset of the specified max samples. Typically used for distributed rendering across multiple devices",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.sample_offset",
+          "label": "Sample Subset Offset",
+          "description": "0-based index of sample to start rendering from",
+          "type": "INT",
+          "value": 0
+        },
+        {
+          "field": "scene.cycles.sample_subset_length",
+          "label": "Sample Subset Length",
+          "description": "The number of samples to render in this subset",
+          "type": "INT",
+          "value": 2048
+        },
+        {
+          "field": "scene.cycles.time_limit",
+          "label": "Time Limit",
+          "description": "Limit the render time (excluding synchronization time). Zero disables the limit",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.cycles.sampling_pattern",
+          "label": "Sampling Pattern",
+          "description": "Random sampling pattern used by the integrator",
+          "type": "ENUM",
+          "value": "AUTOMATIC"
+        },
+        {
+          "field": "scene.cycles.scrambling_distance",
+          "label": "Scrambling Distance",
+          "description": "Reduce randomization between pixels to improve GPU rendering performance, at the cost of possible rendering artifacts if set too low",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.cycles.preview_scrambling_distance",
+          "label": "Scrambling Distance viewport",
+          "description": "Uses the Scrambling Distance value for the viewport. Faster but may flicker",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.auto_scrambling_distance",
+          "label": "Automatic Scrambling Distance",
+          "description": "Automatically reduce the randomization between pixels to improve GPU rendering performance, at the cost of possible rendering artifacts",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.use_layer_samples",
+          "label": "Layer Samples",
+          "description": "How to use per view layer sample settings",
+          "type": "ENUM",
+          "value": "USE"
+        },
+        {
+          "field": "scene.cycles.light_sampling_threshold",
+          "label": "Light Sampling Threshold",
+          "description": "Probabilistically terminate light samples when the light contribution is below this threshold (more noise but faster rendering). Zero disables the test and never ignores lights",
+          "type": "FLOAT",
+          "value": 0.009999999776482582
+        },
+        {
+          "field": "scene.cycles.use_adaptive_sampling",
+          "label": "Use Adaptive Sampling",
+          "description": "Automatically reduce the number of samples per pixel based on estimated noise level",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.adaptive_threshold",
+          "label": "Adaptive Sampling Threshold",
+          "description": "Noise level step to stop sampling at, lower values reduce noise at the cost of render time. Zero for automatic setting based on number of AA samples",
+          "type": "FLOAT",
+          "value": 0.009999999776482582
+        },
+        {
+          "field": "scene.cycles.adaptive_min_samples",
+          "label": "Adaptive Min Samples",
+          "description": "Minimum AA samples for adaptive sampling, to discover noisy features before stopping sampling. Zero for automatic setting based on noise threshold",
+          "type": "INT",
+          "value": 0
+        },
+        {
+          "field": "scene.cycles.use_preview_adaptive_sampling",
+          "label": "Use Adaptive Sampling",
+          "description": "Automatically reduce the number of samples per pixel based on estimated noise level, for viewport renders",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.preview_adaptive_threshold",
+          "label": "Adaptive Sampling Threshold",
+          "description": "Noise level step to stop sampling at, lower values reduce noise at the cost of render time. Zero for automatic setting based on number of AA samples, for viewport renders",
+          "type": "FLOAT",
+          "value": 0.10000000149011612
+        },
+        {
+          "field": "scene.cycles.preview_adaptive_min_samples",
+          "label": "Adaptive Min Samples",
+          "description": "Minimum AA samples for adaptive sampling, to discover noisy features before stopping sampling. Zero for automatic setting based on noise threshold, for viewport renders",
+          "type": "INT",
+          "value": 0
+        },
+        {
+          "field": "scene.cycles.direct_light_sampling_type",
+          "label": "Direct Light Sampling",
+          "description": "The type of strategy used for sampling direct light contributions",
+          "type": "ENUM",
+          "value": "MULTIPLE_IMPORTANCE_SAMPLING"
+        },
+        {
+          "field": "scene.cycles.use_light_tree",
+          "label": "Light Tree",
+          "description": "Sample multiple lights more efficiently based on estimated contribution at every shading point",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.min_light_bounces",
+          "label": "Min Light Bounces",
+          "description": "Minimum number of light bounces. Setting this higher reduces noise in the first bounces, but can also be less efficient for more complex geometry like curves and volumes",
+          "type": "INT",
+          "value": 0
+        },
+        {
+          "field": "scene.cycles.min_transparent_bounces",
+          "label": "Min Transparent Bounces",
+          "description": "Minimum number of transparent bounces. Setting this higher reduces noise in the first bounces, but can also be less efficient for more complex geometry like curves and volumes",
+          "type": "INT",
+          "value": 0
+        },
+        {
+          "field": "scene.cycles.caustics_reflective",
+          "label": "Reflective Caustics",
+          "description": "Use reflective caustics, resulting in a brighter image (more noise but added realism)",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.caustics_refractive",
+          "label": "Refractive Caustics",
+          "description": "Use refractive caustics, resulting in a brighter image (more noise but added realism)",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.blur_glossy",
+          "label": "Filter Glossy",
+          "description": "Adaptively blur glossy shaders and image textures after blurry bounces, to reduce noise and improve texture cache efficiency at the cost of accuracy. Lower this value to render caustics",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.cycles.use_guiding",
+          "label": "Guiding",
+          "description": "Use path guiding for sampling paths. Path guiding incrementally learns the light distribution of the scene and guides path into directions with high direct and indirect light contributions",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.use_deterministic_guiding",
+          "label": "Deterministic",
+          "description": "Makes path guiding deterministic which means renderings will be reproducible with the same pixel values every time. This feature slows down training",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.guiding_distribution_type",
+          "label": "Guiding Distribution Type",
+          "description": "Type of representation for the guiding distribution",
+          "type": "ENUM",
+          "value": "PARALLAX_AWARE_VMM"
+        },
+        {
+          "field": "scene.cycles.guiding_directional_sampling_type",
+          "label": "Directional Sampling Type",
+          "description": "Type of the directional sampling used for guiding",
+          "type": "ENUM",
+          "value": "RIS"
+        },
+        {
+          "field": "scene.cycles.use_surface_guiding",
+          "label": "Surface Guiding",
+          "description": "Use guiding when sampling directions on a surface",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.surface_guiding_probability",
+          "label": "Surface Guiding Probability",
+          "description": "The probability of guiding a direction on a surface",
+          "type": "FLOAT",
+          "value": 0.5
+        },
+        {
+          "field": "scene.cycles.use_volume_guiding",
+          "label": "Volume Guiding",
+          "description": "Use guiding when sampling directions inside a volume",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.guiding_training_samples",
+          "label": "Training Samples",
+          "description": "The maximum number of samples used for training path guiding. Higher samples lead to more accurate guiding, however may also unnecessarily slow down rendering once guiding is accurate enough. A value of 0 will continue training until the last sample",
+          "type": "INT",
+          "value": 128
+        },
+        {
+          "field": "scene.cycles.volume_guiding_probability",
+          "label": "Volume Guiding Probability",
+          "description": "The probability of guiding a direction inside a volume",
+          "type": "FLOAT",
+          "value": 0.5
+        },
+        {
+          "field": "scene.cycles.use_guiding_direct_light",
+          "label": "Guide Direct Light",
+          "description": "Consider the contribution of directly visible light sources during guiding",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.use_guiding_mis_weights",
+          "label": "Use MIS Weights",
+          "description": "Use the MIS weight to weight the contribution of directly visible light sources during guiding",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.guiding_roughness_threshold",
+          "label": "Guiding Roughness Threshold",
+          "description": "The minimal roughness value of a material to apply guiding",
+          "type": "FLOAT",
+          "value": 0.05000000074505806
+        },
+        {
+          "field": "scene.cycles.max_bounces",
+          "label": "Max Bounces",
+          "description": "Total maximum number of bounces",
+          "type": "INT",
+          "value": 12
+        },
+        {
+          "field": "scene.cycles.diffuse_bounces",
+          "label": "Diffuse Bounces",
+          "description": "Maximum number of diffuse reflection bounces, bounded by total maximum",
+          "type": "INT",
+          "value": 4
+        },
+        {
+          "field": "scene.cycles.glossy_bounces",
+          "label": "Glossy Bounces",
+          "description": "Maximum number of glossy reflection bounces, bounded by total maximum",
+          "type": "INT",
+          "value": 4
+        },
+        {
+          "field": "scene.cycles.transmission_bounces",
+          "label": "Transmission Bounces",
+          "description": "Maximum number of transmission bounces, bounded by total maximum",
+          "type": "INT",
+          "value": 12
+        },
+        {
+          "field": "scene.cycles.volume_bounces",
+          "label": "Volume Bounces",
+          "description": "Maximum number of volumetric scattering events",
+          "type": "INT",
+          "value": 0
+        },
+        {
+          "field": "scene.cycles.transparent_max_bounces",
+          "label": "Transparent Max Bounces",
+          "description": "Maximum number of transparent bounces. This is independent of maximum number of other bounces",
+          "type": "INT",
+          "value": 8
+        },
+        {
+          "field": "scene.cycles.volume_step_rate",
+          "label": "Step Rate",
+          "description": "Globally adjust detail for volume rendering, on top of automatically estimated step size. Higher values reduce render time, lower values render with more detail",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.cycles.volume_preview_step_rate",
+          "label": "Step Rate",
+          "description": "Globally adjust detail for volume rendering, on top of automatically estimated step size. Higher values reduce render time, lower values render with more detail",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.cycles.volume_max_steps",
+          "label": "Max Steps",
+          "description": "Maximum number of steps through the volume before giving up, to avoid extremely long render times with big objects or small step sizes",
+          "type": "INT",
+          "value": 1024
+        },
+        {
+          "field": "scene.cycles.volume_biased",
+          "label": "Biased",
+          "description": "Default volume rendering uses null scattering, which is unbiased and has less artifacts, but could be noisier. Biased option uses ray marching, with controls for steps size and max steps",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.dicing_rate",
+          "label": "Dicing Rate",
+          "description": "Multiplier for per object adaptive subdivision size",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.cycles.preview_dicing_rate",
+          "label": "Viewport Dicing Rate",
+          "description": "Multiplier for per object adaptive subdivision size in the viewport",
+          "type": "FLOAT",
+          "value": 8.0
+        },
+        {
+          "field": "scene.cycles.max_subdivisions",
+          "label": "Max Subdivisions",
+          "description": "Stop subdividing when this level is reached even if the dicing rate would produce finer tessellation",
+          "type": "INT",
+          "value": 12
+        },
+        {
+          "field": "scene.cycles.offscreen_dicing_scale",
+          "label": "Offscreen Dicing Scale",
+          "description": "Multiplier for dicing rate of geometry outside of the camera view. The dicing rate of objects is gradually increased the further they are outside the camera view. Lower values provide higher quality reflections and shadows for off screen objects, while higher values use less memory",
+          "type": "FLOAT",
+          "value": 4.0
+        },
+        {
+          "field": "scene.cycles.film_exposure",
+          "label": "Exposure",
+          "description": "Image brightness scale",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.cycles.film_transparent_glass",
+          "label": "Transparent Glass",
+          "description": "Render transmissive surfaces as transparent, for compositing glass over another background",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.film_transparent_roughness",
+          "label": "Transparent Roughness Threshold",
+          "description": "For transparent transmission, keep surfaces with roughness above the threshold opaque",
+          "type": "FLOAT",
+          "value": 0.10000000149011612
+        },
+        {
+          "field": "scene.cycles.pixel_filter_type",
+          "label": "Filter Type",
+          "description": "Pixel filter type",
+          "type": "ENUM",
+          "value": "BLACKMAN_HARRIS"
+        },
+        {
+          "field": "scene.cycles.filter_width",
+          "label": "Filter Width",
+          "description": "Pixel filter width",
+          "type": "FLOAT",
+          "value": 1.5
+        },
+        {
+          "field": "scene.cycles.use_pixel_jitter",
+          "label": "Use Pixel Jitter",
+          "description": "Use Pixel Jitter",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.seed",
+          "label": "Seed",
+          "description": "Seed value for integrator to get different noise patterns",
+          "type": "INT",
+          "value": 0
+        },
+        {
+          "field": "scene.cycles.use_animated_seed",
+          "label": "Use Animated Seed",
+          "description": "Use different seed values (and hence noise patterns) at different frames",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.sample_clamp_direct",
+          "label": "Clamp Direct",
+          "description": "If non-zero, the maximum value for a direct sample, higher values will be scaled down to avoid too much noise and slow convergence at the cost of accuracy",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.cycles.sample_clamp_indirect",
+          "label": "Clamp Indirect",
+          "description": "If non-zero, the maximum value for an indirect sample, higher values will be scaled down to avoid too much noise and slow convergence at the cost of accuracy",
+          "type": "FLOAT",
+          "value": 10.0
+        },
+        {
+          "field": "scene.cycles.debug_bvh_type",
+          "label": "Viewport BVH Type",
+          "description": "Choose between faster updates, or faster render",
+          "type": "ENUM",
+          "value": "DYNAMIC_BVH"
+        },
+        {
+          "field": "scene.cycles.debug_use_spatial_splits",
+          "label": "Use Spatial Splits",
+          "description": "Use BVH spatial splits: longer builder time, faster render",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.debug_use_hair_bvh",
+          "label": "Use Curves BVH",
+          "description": "Use special type BVH optimized for curves (uses more ram but renders faster)",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.debug_use_compact_bvh",
+          "label": "Use Compact BVH",
+          "description": "Use compact BVH structure (uses less ram but renders slower)",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.debug_bvh_time_steps",
+          "label": "BVH Time Steps",
+          "description": "Split BVH primitives by this number of time steps to speed up render time in cost of memory",
+          "type": "INT",
+          "value": 0
+        },
+        {
+          "field": "scene.cycles.bake_type",
+          "label": "Bake Type",
+          "description": "Type of pass to bake",
+          "type": "ENUM",
+          "value": "COMBINED"
+        },
+        {
+          "field": "scene.cycles.use_camera_cull",
+          "label": "Use Camera Cull",
+          "description": "Allow objects to be culled based on the camera frustum",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.camera_cull_margin",
+          "label": "Camera Cull Margin",
+          "description": "Margin for the camera space culling",
+          "type": "FLOAT",
+          "value": 0.10000000149011612
+        },
+        {
+          "field": "scene.cycles.use_distance_cull",
+          "label": "Use Distance Cull",
+          "description": "Allow objects to be culled based on the distance from camera",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.distance_cull_margin",
+          "label": "Cull Distance",
+          "description": "Cull objects which are further away from camera than this distance",
+          "type": "FLOAT",
+          "value": 50.0
+        },
+        {
+          "field": "scene.cycles.rolling_shutter_type",
+          "label": "Shutter Type",
+          "description": "Type of rolling shutter effect matching CMOS-based cameras",
+          "type": "ENUM",
+          "value": "NONE"
+        },
+        {
+          "field": "scene.cycles.rolling_shutter_duration",
+          "label": "Rolling Shutter Duration",
+          "description": "Scanline \"exposure\" time for the rolling shutter effect",
+          "type": "FLOAT",
+          "value": 0.10000000149011612
+        },
+        {
+          "field": "scene.cycles.texture_resolution",
+          "label": "Viewport Texture Resolution",
+          "description": "Scale factor for texture resolution used by viewport rendering",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.cycles.texture_resolution_render",
+          "label": "Render Texture Resolution",
+          "description": "Scale factor for texture resolution used by final rendering",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.cycles.texture_limit",
+          "label": "Viewport Texture Limit",
+          "description": "Limit texture size used by viewport rendering",
+          "type": "ENUM",
+          "value": "OFF"
+        },
+        {
+          "field": "scene.cycles.texture_limit_render",
+          "label": "Render Texture Limit",
+          "description": "Limit texture size used by final rendering",
+          "type": "ENUM",
+          "value": "OFF"
+        },
+        {
+          "field": "scene.cycles.use_fast_gi",
+          "label": "Fast GI Approximation",
+          "description": "Approximate diffuse indirect light with background tinted ambient occlusion. This provides fast alternative to full global illumination, for interactive viewport rendering or final renders with reduced quality",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.fast_gi_method",
+          "label": "Fast GI Method",
+          "description": "Fast GI approximation method",
+          "type": "ENUM",
+          "value": "REPLACE"
+        },
+        {
+          "field": "scene.cycles.ao_bounces",
+          "label": "AO Bounces",
+          "description": "After this number of light bounces, use approximate global illumination. 0 disables this feature",
+          "type": "INT",
+          "value": 1
+        },
+        {
+          "field": "scene.cycles.ao_bounces_render",
+          "label": "AO Bounces Render",
+          "description": "After this number of light bounces, use approximate global illumination. 0 disables this feature",
+          "type": "INT",
+          "value": 1
+        },
+        {
+          "field": "scene.cycles.use_auto_tile",
+          "label": "Auto Tile",
+          "description": "Deprecated, tiling is always enabled",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.tile_size",
+          "label": "Tile Size",
+          "description": "Render high resolution images in tiles of this size, to reduce memory usage. Tiles are cached to disk while rendering to save memory",
+          "type": "INT",
+          "value": 2048
+        },
+        {
+          "field": "scene.cycles.debug_use_cpu_avx2",
+          "label": "AVX2",
+          "description": "AVX2",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.debug_use_cpu_sse42",
+          "label": "SSE42",
+          "description": "SSE42",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.debug_bvh_layout",
+          "label": "BVH Layout",
+          "description": "BVH Layout",
+          "type": "ENUM",
+          "value": "EMBREE"
+        },
+        {
+          "field": "scene.cycles.debug_use_cuda_adaptive_compile",
+          "label": "Adaptive Compile",
+          "description": "Compile the Cycles GPU kernel with only the feature set required for the current scene",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.debug_use_optix_debug",
+          "label": "OptiX Module Debug",
+          "description": "Load OptiX module in debug mode: lower logging verbosity level, enable validations, and lower optimization level",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.debug_use_hip_adaptive_compile",
+          "label": "Adaptive Compile",
+          "description": "Compile the Cycles GPU kernel with only the feature set required for the current scene",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.debug_use_metal_adaptive_compile",
+          "label": "Adaptive Compile",
+          "description": "Compile the Cycles GPU kernel with only the feature set required for the current scene",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.cycles.debug_use_texture_cache_eviction",
+          "label": "Cache Eviction",
+          "description": "Evict unused tiles from the texture cache to free up memory",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.cycles.debug_texture_cache_preserve_unused",
+          "label": "Preserve Unused MB",
+          "description": "Preserve unused texture cache data, up to this amount of memory",
+          "type": "INT",
+          "value": 0
+        }
+      ]
+    },
+    "eevee": {
+      "category_label": "EEVEE Engine Settings",
+      "category_id": "eevee",
+      "properties": [
+        {
+          "field": "scene.eevee.gi_diffuse_bounces",
+          "label": "Diffuse Bounces",
+          "description": "Number of times the light is reinjected inside light grids, 0 disable indirect diffuse light",
+          "type": "INT",
+          "value": 3
+        },
+        {
+          "field": "scene.eevee.gi_cubemap_resolution",
+          "label": "Cubemap Size",
+          "description": "Size of every cubemaps",
+          "type": "ENUM",
+          "value": "512"
+        },
+        {
+          "field": "scene.eevee.gi_visibility_resolution",
+          "label": "Irradiance Visibility Size",
+          "description": "Size of the shadow map applied to each irradiance sample",
+          "type": "ENUM",
+          "value": "32"
+        },
+        {
+          "field": "scene.eevee.gi_glossy_clamp",
+          "label": "Clamp Glossy",
+          "description": "Clamp pixel intensity to reduce noise inside glossy reflections from reflection cubemaps (0 to disable)",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.eevee.gi_irradiance_pool_size",
+          "label": "Irradiance Pool Size",
+          "description": "Size of the irradiance pool, a bigger pool size allows for more irradiance grid in the scene but might not fit into GPU memory and decrease performance",
+          "type": "ENUM",
+          "value": "16"
+        },
+        {
+          "field": "scene.eevee.taa_samples",
+          "label": "Viewport Samples",
+          "description": "Number of samples, unlimited if 0",
+          "type": "INT",
+          "value": 16
+        },
+        {
+          "field": "scene.eevee.taa_render_samples",
+          "label": "Render Samples",
+          "description": "Number of samples per pixel for rendering",
+          "type": "INT",
+          "value": 64
+        },
+        {
+          "field": "scene.eevee.use_taa_reprojection",
+          "label": "Viewport Denoising",
+          "description": "Denoise image using temporal reprojection (can leave some ghosting)",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.eevee.ray_tracing_method",
+          "label": "Tracing Method",
+          "description": "Select the tracing method used to find scene-ray intersections",
+          "type": "ENUM",
+          "value": "SCREEN"
+        },
+        {
+          "field": "scene.eevee.use_shadow_jitter_viewport",
+          "label": "Jittered Shadows (Viewport)",
+          "description": "Enable jittered shadows on the viewport. (Jittered shadows are always enabled for final renders).",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.eevee.clamp_surface_direct",
+          "label": "Clamp Surface Direct",
+          "description": "If non-zero, the maximum value for lights contribution on a surface. Higher values will be scaled down to avoid too much noise and slow convergence at the cost of accuracy. Used by light objects.",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.eevee.clamp_surface_indirect",
+          "label": "Clamp Surface Indirect",
+          "description": "If non-zero, the maximum value for indirect lighting on surface. Higher values will be scaled down to avoid too much noise and slow convergence at the cost of accuracy. Used by ray-tracing and light-probes.",
+          "type": "FLOAT",
+          "value": 10.0
+        },
+        {
+          "field": "scene.eevee.clamp_volume_direct",
+          "label": "Clamp Volume Direct",
+          "description": "If non-zero, the maximum value for lights contribution in volumes. Higher values will be scaled down to avoid too much noise and slow convergence at the cost of accuracy. Used by light objects.",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.eevee.clamp_volume_indirect",
+          "label": "Clamp Volume Indirect",
+          "description": "If non-zero, the maximum value for indirect lighting in volumes. Higher values will be scaled down to avoid too much noise and slow convergence at the cost of accuracy. Used by light-probes.",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.eevee.direct_light_intensity",
+          "label": "Direct Light Strength",
+          "description": "Scale the contribution of direct lighting",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.eevee.indirect_light_intensity",
+          "label": "Indirect Light Strength",
+          "description": "Scale the contribution of indirect lighting",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.eevee.volumetric_start",
+          "label": "Start",
+          "description": "Start distance of the volumetric effect",
+          "type": "FLOAT",
+          "value": 0.10000000149011612
+        },
+        {
+          "field": "scene.eevee.volumetric_end",
+          "label": "End",
+          "description": "End distance of the volumetric effect",
+          "type": "FLOAT",
+          "value": 100.0
+        },
+        {
+          "field": "scene.eevee.volumetric_tile_size",
+          "label": "Resolution",
+          "description": "Control the quality of the volumetric effects. Higher resolution uses more memory.",
+          "type": "ENUM",
+          "value": "8"
+        },
+        {
+          "field": "scene.eevee.volumetric_samples",
+          "label": "Steps",
+          "description": "Number of steps to compute volumetric effects. Higher step count increase VRAM usage and quality.",
+          "type": "INT",
+          "value": 64
+        },
+        {
+          "field": "scene.eevee.volumetric_sample_distribution",
+          "label": "Exponential Sampling",
+          "description": "Distribute more samples closer to the camera",
+          "type": "FLOAT",
+          "value": 0.800000011920929
+        },
+        {
+          "field": "scene.eevee.volumetric_ray_depth",
+          "label": "Volume Max Ray Depth",
+          "description": "Maximum surface intersection count used by the accurate volume intersection method. Will create artifact if it is exceeded. Higher count increases VRAM usage.",
+          "type": "INT",
+          "value": 16
+        },
+        {
+          "field": "scene.eevee.volumetric_light_clamp",
+          "label": "Clamp",
+          "description": "Maximum light contribution, reducing noise",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.eevee.use_volumetric_shadows",
+          "label": "Volumetric Shadows",
+          "description": "Cast shadows from volumetric materials onto volumetric materials (Very expensive)",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.eevee.volumetric_shadow_samples",
+          "label": "Volumetric Shadow Samples",
+          "description": "Number of samples to compute volumetric shadowing",
+          "type": "INT",
+          "value": 16
+        },
+        {
+          "field": "scene.eevee.use_volume_custom_range",
+          "label": "Volume Custom Range",
+          "description": "Enable custom start and end clip distances for volume computation",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.eevee.use_fast_gi",
+          "label": "Fast GI Approximation",
+          "description": "Use faster global illumination technique for high roughness surfaces",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.eevee.fast_gi_thickness_near",
+          "label": "Thickness",
+          "description": "Geometric thickness of the surfaces when computing fast GI and ambient occlusion. Reduces light leaking and missing contact occlusion.",
+          "type": "FLOAT",
+          "value": 0.10000000149011612
+        },
+        {
+          "field": "scene.eevee.fast_gi_quality",
+          "label": "Trace Precision",
+          "description": "Precision of the fast GI ray marching",
+          "type": "FLOAT",
+          "value": 0.25
+        },
+        {
+          "field": "scene.eevee.fast_gi_step_count",
+          "label": "Step Count",
+          "description": "Amount of screen sample per GI ray",
+          "type": "INT",
+          "value": 8
+        },
+        {
+          "field": "scene.eevee.fast_gi_ray_count",
+          "label": "Ray Count",
+          "description": "Amount of GI ray to trace for each pixel",
+          "type": "INT",
+          "value": 2
+        },
+        {
+          "field": "scene.eevee.fast_gi_method",
+          "label": "Method",
+          "description": "Fast GI approximation method",
+          "type": "ENUM",
+          "value": "GLOBAL_ILLUMINATION"
+        },
+        {
+          "field": "scene.eevee.fast_gi_distance",
+          "label": "Distance",
+          "description": "If non-zero, the maximum distance at which other surfaces will contribute to the fast GI approximation",
+          "type": "FLOAT",
+          "value": 0.0
+        },
+        {
+          "field": "scene.eevee.fast_gi_bias",
+          "label": "Bias",
+          "description": "Bias the shading normal to reduce self intersection artifacts",
+          "type": "FLOAT",
+          "value": 0.05000000074505806
+        },
+        {
+          "field": "scene.eevee.fast_gi_resolution",
+          "label": "Resolution",
+          "description": "Control the quality of the fast GI lighting. Higher resolution uses more memory.",
+          "type": "ENUM",
+          "value": "2"
+        },
+        {
+          "field": "scene.eevee.bokeh_max_size",
+          "label": "Max Size",
+          "description": "Max size of the bokeh shape for the depth of field (lower is faster)",
+          "type": "FLOAT",
+          "value": 100.0
+        },
+        {
+          "field": "scene.eevee.bokeh_threshold",
+          "label": "Sprite Threshold",
+          "description": "Brightness threshold for using sprite base depth of field",
+          "type": "FLOAT",
+          "value": 1.0
+        },
+        {
+          "field": "scene.eevee.bokeh_neighbor_max",
+          "label": "Neighbor Rejection",
+          "description": "Maximum brightness to consider when rejecting bokeh sprites based on neighborhood (lower is faster)",
+          "type": "FLOAT",
+          "value": 10.0
+        },
+        {
+          "field": "scene.eevee.use_bokeh_jittered",
+          "label": "Jitter Camera",
+          "description": "Jitter camera position to create accurate blurring using render samples (only for final render)",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.eevee.bokeh_overblur",
+          "label": "Over-blur",
+          "description": "Apply blur to each jittered sample to reduce under-sampling artifacts",
+          "type": "FLOAT",
+          "value": 5.0
+        },
+        {
+          "field": "scene.eevee.motion_blur_depth_scale",
+          "label": "Bleeding Bias",
+          "description": "Lower values will reduce background bleeding onto foreground elements",
+          "type": "FLOAT",
+          "value": 100.0
+        },
+        {
+          "field": "scene.eevee.motion_blur_max",
+          "label": "Max Blur",
+          "description": "Maximum blur distance a pixel can spread over",
+          "type": "INT",
+          "value": 32
+        },
+        {
+          "field": "scene.eevee.motion_blur_steps",
+          "label": "Motion steps",
+          "description": "Controls accuracy of motion blur, more steps means longer render time",
+          "type": "INT",
+          "value": 1
+        },
+        {
+          "field": "scene.eevee.use_shadows",
+          "label": "Shadows",
+          "description": "Enable shadow casting from lights",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "scene.eevee.shadow_pool_size",
+          "label": "Shadow Pool Size",
+          "description": "Size of the shadow pool, a bigger pool size allows for more shadows in the scene but might not fit into GPU memory",
+          "type": "ENUM",
+          "value": "512"
+        },
+        {
+          "field": "scene.eevee.shadow_ray_count",
+          "label": "Shadow Ray Count",
+          "description": "Amount of shadow ray to trace for each light",
+          "type": "INT",
+          "value": 1
+        },
+        {
+          "field": "scene.eevee.shadow_step_count",
+          "label": "Shadow Step Count",
+          "description": "Amount of shadow map sample per shadow ray",
+          "type": "INT",
+          "value": 6
+        },
+        {
+          "field": "scene.eevee.light_threshold",
+          "label": "Light Threshold",
+          "description": "Minimum light intensity for a light to contribute to the lighting",
+          "type": "FLOAT",
+          "value": 0.009999999776482582
+        },
+        {
+          "field": "scene.eevee.use_overscan",
+          "label": "Overscan",
+          "description": "Internally render past the image border to avoid screen-space effects disappearing",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.eevee.overscan_size",
+          "label": "Overscan Size",
+          "description": "Percentage of render size to add as overscan to the internal render buffers",
+          "type": "FLOAT",
+          "value": 3.0
+        },
+        {
+          "field": "scene.eevee.use_raytracing",
+          "label": "Use Ray-Tracing",
+          "description": "Enable the ray-tracing module",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "scene.eevee.shadow_resolution_scale",
+          "label": "Shadows Resolution Scale",
+          "description": "Resolution percentage of shadow maps",
+          "type": "FLOAT",
+          "value": 1.0
+        }
+      ]
+    },
+    "output_format": {
+      "category_label": "Output Format & Compression",
+      "category_id": "output_format",
+      "properties": [
+        {
+          "field": "scene.render.image_settings.file_format",
+          "label": "File Format",
+          "description": "File format to save the rendered images as",
+          "type": "ENUM",
+          "value": "PNG"
+        },
+        {
+          "field": "scene.render.image_settings.color_mode",
+          "label": "Color Mode",
+          "description": "Choose BW for saving grayscale images, RGB for saving red, green and blue channels, and RGBA for saving red, green, blue and alpha channels",
+          "type": "ENUM",
+          "value": "RGBA"
+        },
+        {
+          "field": "scene.render.image_settings.color_depth",
+          "label": "Color Depth",
+          "description": "Bit depth per channel",
+          "type": "ENUM",
+          "value": "8"
+        },
+        {
+          "field": "scene.render.image_settings.quality",
+          "label": "Quality",
+          "description": "Quality for image formats that support lossy compression",
+          "type": "INT",
+          "value": 90
+        },
+        {
+          "field": "scene.render.image_settings.compression",
+          "label": "Compression",
+          "description": "Amount of time to determine best compression: 0 = no compression with fast file output, 100 = maximum lossless compression with slow file output",
+          "type": "INT",
+          "value": 15
+        },
+        {
+          "field": "scene.render.image_settings.exr_codec",
+          "label": "Codec",
+          "description": "Compression codec settings for OpenEXR",
+          "type": "ENUM",
+          "value": "ZIP"
+        },
+        {
+          "field": "scene.render.image_settings.tiff_codec",
+          "label": "Compression",
+          "description": "Compression mode for TIFF",
+          "type": "ENUM",
+          "value": "DEFLATE"
+        }
+      ]
+    },
+    "passes": {
+      "category_label": "View Layer Passes",
+      "category_id": "passes",
+      "properties": [
+        {
+          "field": "view_layer.use_pass_cryptomatte_object",
+          "label": "Cryptomatte Object",
+          "description": "Render cryptomatte object pass, for isolating objects in compositing",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_cryptomatte_material",
+          "label": "Cryptomatte Material",
+          "description": "Render cryptomatte material pass, for isolating materials in compositing",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_cryptomatte_asset",
+          "label": "Cryptomatte Asset",
+          "description": "Render cryptomatte asset pass, for isolating groups of objects with the same parent",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_cryptomatte_accurate",
+          "label": "Cryptomatte Accurate",
+          "description": "Generate a more accurate cryptomatte pass",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "view_layer.use_pass_combined",
+          "label": "Combined",
+          "description": "Deliver full combined RGBA buffer",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "view_layer.use_pass_z",
+          "label": "Depth",
+          "description": "Deliver depth values pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_vector",
+          "label": "Vector",
+          "description": "Deliver speed vector pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_position",
+          "label": "Position",
+          "description": "Deliver position pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_normal",
+          "label": "Normal",
+          "description": "Deliver normal pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_uv",
+          "label": "UV",
+          "description": "Deliver texture UV pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_mist",
+          "label": "Mist",
+          "description": "Deliver mist factor pass (0.0 to 1.0)",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_object_index",
+          "label": "Object Index",
+          "description": "Deliver object index pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_material_index",
+          "label": "Material Index",
+          "description": "Deliver material index pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_shadow",
+          "label": "Shadow",
+          "description": "Deliver shadow pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_ambient_occlusion",
+          "label": "Ambient Occlusion",
+          "description": "Deliver Ambient Occlusion pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_emit",
+          "label": "Emission",
+          "description": "Deliver emission pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_environment",
+          "label": "Environment",
+          "description": "Deliver environment lighting pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_diffuse_direct",
+          "label": "Diffuse Direct",
+          "description": "Deliver diffuse direct pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_diffuse_indirect",
+          "label": "Diffuse Indirect",
+          "description": "Deliver diffuse indirect pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_diffuse_color",
+          "label": "Diffuse Color",
+          "description": "Deliver diffuse color pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_glossy_direct",
+          "label": "Glossy Direct",
+          "description": "Deliver glossy direct pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_glossy_indirect",
+          "label": "Glossy Indirect",
+          "description": "Deliver glossy indirect pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_glossy_color",
+          "label": "Glossy Color",
+          "description": "Deliver glossy color pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_transmission_direct",
+          "label": "Transmission Direct",
+          "description": "Deliver transmission direct pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_transmission_indirect",
+          "label": "Transmission Indirect",
+          "description": "Deliver transmission indirect pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_transmission_color",
+          "label": "Transmission Color",
+          "description": "Deliver transmission color pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_subsurface_direct",
+          "label": "Subsurface Direct",
+          "description": "Deliver subsurface direct pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_subsurface_indirect",
+          "label": "Subsurface Indirect",
+          "description": "Deliver subsurface indirect pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_subsurface_color",
+          "label": "Subsurface Color",
+          "description": "Deliver subsurface color pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.use_pass_grease_pencil",
+          "label": "Grease Pencil",
+          "description": "Deliver Grease Pencil render result in a separate pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.cycles.use_pass_volume_direct",
+          "label": "Volume Direct",
+          "description": "Deliver direct volumetric scattering pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.cycles.use_pass_volume_indirect",
+          "label": "Volume Indirect",
+          "description": "Deliver indirect volumetric scattering pass",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.cycles.use_pass_volume_scatter",
+          "label": "Volume Scatter",
+          "description": "Contribution of paths that scattered in the volume at the primary ray",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.cycles.use_pass_volume_transmit",
+          "label": "Volume Transmit",
+          "description": "Contribution of paths that transmitted through the volume at the primary ray",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.cycles.use_pass_volume_majorant",
+          "label": "Volume Majorant",
+          "description": "Majorant transmittance of the volume",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.cycles.use_pass_shadow_catcher",
+          "label": "Shadow Catcher",
+          "description": "Pass containing shadows and light which is to be multiplied into backdrop",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.cycles.denoising_store_passes",
+          "label": "Store Denoising Passes",
+          "description": "Store the denoising feature passes and the noisy image. The passes adapt to the denoiser selected for rendering",
+          "type": "BOOLEAN",
+          "value": false
+        },
+        {
+          "field": "view_layer.cycles.denoising_pass_follow_reflections",
+          "label": "Denoising Pass Reflections",
+          "description": "Follow reflections for the denoising feature passes",
+          "type": "BOOLEAN",
+          "value": true
+        },
+        {
+          "field": "view_layer.cycles.denoising_pass_use_albedo_roughness_weighting",
+          "label": "Denoising Pass Albedo Roughness Weighting",
+          "description": "Use roughness-based weighting of the albedo for the denoising feature passes",
+          "type": "BOOLEAN",
+          "value": true
+        }
+      ]
+    }
+  }
+}
